@@ -6,9 +6,9 @@
 
 ## 📖 Introduction
 
-**Minicxx** is a toy compiler built from scratch in C++. Currently, its syntax and capabilities closely resemble a subset of the C language (supporting functions, basic control flows, and integer operations) [1, 8]. However, the core architecture is designed with extensibility in mind, paving the way for future C++ features such as classes, objects, and advanced type systems. 
+**Minicxx** is a toy compiler built from scratch in C++. Currently, its syntax and capabilities closely resemble a subset of the C language (supporting functions, basic control flows, and integer operations) . However, the core architecture is designed with extensibility in mind, paving the way for future C++ features such as classes, objects, and advanced type systems. 
 
-It implements a complete compilation pipeline: Lexical Analysis [2], Syntax Analysis (AST generation) [6], Semantic Analysis [8], AST Optimization (Pass Manager), and x86-64 Assembly Code Generation.
+It implements a complete compilation pipeline: Lexical Analysis, Syntax Analysis (AST generation), Semantic Analysis, AST Optimization (Pass Manager), and x86-64 Assembly Code Generation.
 
 ## 📦 Releases (Play Instantly!)
 
@@ -24,25 +24,25 @@ Running the compiler will start an interactive command-line session. Here is the
 1. **Select Optimization Level**: The compiler will first prompt you to select an optimization level. Enter `0` (no optimization), `1` (basic optimization, like constant folding), or `2` (advanced optimization).
 2. **Set Output Directory**: Enter the absolute or relative folder path where you want the generated `.s` (assembly) and `.exe` (executable) files to be saved. If you simply press `Enter` (leave it blank), the files will be saved in the current directory.
 3. **Write Your Code**: Enter your C/C++ code line by line. 
-4. **Compile**: When you are finished typing your code, press `Enter` twice (i.e., submit an empty line) [10]. The compilation process will begin immediately, outputting the AST and generating the files.
-5. **Exit**: To exit the compiler safely, simply type `ccc` on a new line and press Enter [10].
+4. **Compile**: When you are finished typing your code, press `Enter` twice (i.e., submit an empty line). The compilation process will begin immediately, outputting the AST and generating the files.
+5. **Exit**: To exit the compiler safely, simply type `ccc` on a new line and press Enter.
 
 ## 💻 Supported Syntax (Current C Subset)
 
-*   **Primitive Types**: `int`, `void` [8].
-*   **Variable Declarations**: `int a = 10;` [1].
-*   **Binary Operations**: `+`, `-`, `*`, `/`, `==`, `!=`, `<`, `>`, `<=`, `>=` [4].
-*   **Control Flow**: `if-else`, `while`, `do-while` [1].
-*   **Functions**: Function declarations, definitions, and `return` statements [1, 6].
+*   **Primitive Types**: `int`, `void`.
+*   **Variable Declarations**: `int a = 10;`.
+*   **Binary Operations**: `+`, `-`, `*`, `/`, `==`, `!=`, `<`, `>`, `<=`, `>=`.
+*   **Control Flow**: `if-else`, `while`, `do-while`.
+*   **Functions**: Function declarations, definitions, and `return` statements.
 *   **Built-in Functions**: Native support for `printf`.
 
-*Note: Minicxx currently does not support floating-point numeric literals, boolean values, comments, or `#` macro directives [10].*
+*Note: Minicxx currently does not support floating-point numeric literals, boolean values, comments, or `#` macro directives.*
 
 ## 🔮 Future Roadmap (Towards C++)
 
 As the name **Minicxx** implies, the ultimate goal is to evolve this project from a C subset into a C++ compiler. Planned features include:
 - Object-Oriented Programming (Classes, inheritance, virtual functions).
-- Support for `float`, `double`, and `bool` [10].
+- Support for `float`, `double`, and `bool`.
 - Namespaces and C++ standard library subset integration.
 - Pointers and reference types.
 
@@ -60,9 +60,9 @@ This project is licensed under the MIT License.
 
 ## 📖 简介
 
-**Minicxx** 是一个纯 C++ 从零手写的微型编译器。目前，它的语法和功能更贴近 C 语言的子集（支持函数、基础控制流和整数运算）[1, 8]。然而，其底层架构在设计之初就考虑到了极高的扩展性，为未来引入类、对象、多态等 C++ 高级特性奠定了基础。
+**Minicxx** 是一个纯 C++ 从零手写的微型编译器。目前，它的语法和功能更贴近 C 语言的子集（支持函数、基础控制流和整数运算）。然而，其底层架构在设计之初就考虑到了极高的扩展性，为未来引入类、对象、多态等 C++ 高级特性奠定了基础。
 
-它实现了一个完整的编译流水线：词法分析 [2]、语法分析（AST构建）[6]、语义分析 [8]、抽象语法树优化（Pass趟机制）以及 x86-64 汇编代码生成。
+它实现了一个完整的编译流水线：词法分析 [2]、语法分析（AST构建）、语义分析 、抽象语法树优化（Pass趟机制）以及 x86-64 汇编代码生成。
 
 ## 📦 Releases (开箱即用)
 
@@ -78,25 +78,25 @@ This project is licensed under the MIT License.
 1. **选择优化力度**：程序会首先要求您选择代码的优化级别。您可以输入 `0`（不优化）、`1`（基础优化，如常量折叠）或 `2`（进阶优化）。
 2. **设置输出目录**：输入您希望将生成的 `.s` (汇编文件) 和 `.exe` (目标程序) 保存到的文件夹路径。如果您直接按下回车（留空），文件将默认保存在当前目录下。
 3. **编写代码**：您可以像在普通编辑器里一样，逐行输入您的 C/C++ 代码。
-4. **开始编译**：当您的代码编写完成后，连续按下两次回车（即输入一个空行）即可触发编译 [10]。编译器会打印出 AST 并自动在您指定的目录下生成汇编与可执行文件。
-5. **退出程序**：如果想要安全退出编译器，只需在新的一行输入 `ccc` 并回车即可 [10]。
+4. **开始编译**：当您的代码编写完成后，连续按下两次回车（即输入一个空行）即可触发编译。编译器会打印出 AST 并自动在您指定的目录下生成汇编与可执行文件。
+5. **退出程序**：如果想要安全退出编译器，只需在新的一行输入 `ccc` 并回车即可。
 
 ## 💻 目前支持的语法 (C 语言子集)
 
-*   **基础类型**: `int`, `void` [8]。
-*   **变量声明**: `int a = 10;` [1]。
-*   **二元运算**: `+`, `-`, `*`, `/`, `==`, `!=`, `<`, `>`, `<=`, `>=` [4]。
-*   **控制流**: `if-else`, `while`, `do-while` [1]。
-*   **函数**: 函数声明、定义以及 `return` 返回语句 [1, 6]。
+*   **基础类型**: `int`, `void`。
+*   **变量声明**: `int a = 10;`。
+*   **二元运算**: `+`, `-`, `*`, `/`, `==`, `!=`, `<`, `>`, `<=`, `>=`。
+*   **控制流**: `if-else`, `while`, `do-while`。
+*   **函数**: 函数声明、定义以及 `return` 返回语句。
 *   **内置函数**: 原生开特权支持 `printf`。
 
-*注意：Minicxx 目前暂不支持浮点数字面量、布尔值、注释或 `#` 宏指令等操作 [10]。*
+*注意：Minicxx 目前暂不支持浮点数字面量、布尔值、注释或 `#` 宏指令等操作。*
 
 ## 🔮 未来规划 (向 C++ 演进)
 
 正如其名 **Minicxx** 所暗示的，本项目的终极目标是从 C 子集平滑过渡到完整的 C++ 编译器。未来的开发路线图包括：
 - 面向对象编程支持（类、继承、虚函数等）。
-- 扩展数据类型支持：`float`、`double`、`bool` [10]。
+- 扩展数据类型支持：`float`、`double`、`bool`。
 - 命名空间（Namespaces）与基础 C++ 标准库子集。
 - 指针与引用类型的实现。
 
