@@ -1,0 +1,6 @@
+F:\c++\MiniCXX\src\codeGenerator\CodeGenerator.cpp;F:\c++\MiniCXX\build\obj\x64\Debug\CodeGenerator.obj
+F:\c++\MiniCXX\src\lexer\Lexer.cpp;F:\c++\MiniCXX\build\obj\x64\Debug\Lexer.obj
+F:\c++\MiniCXX\src\main.cpp;F:\c++\MiniCXX\build\obj\x64\Debug\main.obj
+F:\c++\MiniCXX\src\optimizer\ConstantFoldingPass.cpp;F:\c++\MiniCXX\build\obj\x64\Debug\ConstantFoldingPass.obj
+F:\c++\MiniCXX\src\parser\Parser.cpp;F:\c++\MiniCXX\build\obj\x64\Debug\Parser.obj
+F:\c++\MiniCXX\src\semanticAnalyzer\SemanticAnalyzer.cpp;F:\c++\MiniCXX\build\obj\x64\Debug\SemanticAnalyzer.obj
