@@ -1,0 +1,22 @@
+# 1. 忽略编译生成的二进制文件和中间文件
+*.exe
+*.o
+*.obj
+*.out
+*.dll
+*.a
+
+# 2. 忽略您的编译器在运行中临时生成的汇编代码文件
+output.s
+
+# 3. 忽略常见的构建与输出目录
+build/
+bin/
+out/
+Release/
+Debug/
+
+# 4. 忽略 IDE (如 VS Code, Visual Studio) 自动生成的本地缓存与配置文件
+.vs/
+.vscode/
+*.user
