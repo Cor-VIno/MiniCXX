@@ -1,0 +1,12 @@
+int f() {
+    return 1;
+}
+
+int g() {
+    return 0;
+}
+
+int main() {
+    int a = f() && g();
+    return a;
+}

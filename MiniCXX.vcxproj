@@ -19,31 +19,84 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\codeGenerator\CodeGenerator.cpp" />
-    <ClCompile Include="src\lexer\Lexer.cpp" />
+    <ClCompile Include="src\frontend\ast\AST.cpp" />
+    <ClCompile Include="src\frontend\lexer\Lexer.cpp" />
+    <ClCompile Include="src\frontend\parser\Parser.cpp" />
+    <ClCompile Include="src\frontend\sema\SemanticAnalyzer.cpp" />
+    <ClCompile Include="src\ir\builder\IRBuilder.cpp" />
+    <ClCompile Include="src\ir\builder\IRGenerator.cpp" />
+    <ClCompile Include="src\ir\constants\ConstantArray.cpp" />
+    <ClCompile Include="src\ir\constants\ConstantCString.cpp" />
+    <ClCompile Include="src\ir\constants\ConstantFloat.cpp" />
+    <ClCompile Include="src\ir\constants\ConstantInt.cpp" />
+    <ClCompile Include="src\ir\constants\ConstantZeroInitializer.cpp" />
+    <ClCompile Include="src\ir\core\BasicBlock.cpp" />
+    <ClCompile Include="src\ir\core\Function.cpp" />
+    <ClCompile Include="src\ir\core\GlobalVariable.cpp" />
+    <ClCompile Include="src\ir\core\Instruction.cpp" />
+    <ClCompile Include="src\ir\core\LibFunction.cpp" />
+    <ClCompile Include="src\ir\core\Module.cpp" />
+    <ClCompile Include="src\ir\core\UndefValue.cpp" />
+    <ClCompile Include="src\ir\passes\ConstantFoldingPass.cpp" />
+    <ClCompile Include="src\ir\passes\DeadCodeEliminationPass.cpp" />
+    <ClCompile Include="src\ir\passes\DeadStoreEliminationPass.cpp" />
+    <ClCompile Include="src\ir\passes\IRVerifier.cpp" />
+    <ClCompile Include="src\ir\passes\SimplifyCFGPass.cpp" />
+    <ClCompile Include="src\ir\passes\StoreLoadForwardingPass.cpp" />
+    <ClCompile Include="src\ir\types\ArrayType.cpp" />
+    <ClCompile Include="src\ir\types\FunctionType.cpp" />
+    <ClCompile Include="src\ir\types\PointerType.cpp" />
+    <ClCompile Include="src\ir\types\Type.cpp" />
+    <ClCompile Include="src\ir\types\VectorType.cpp" />
+    <ClCompile Include="src\ir\core\User.cpp" />
+    <ClCompile Include="src\ir\core\Value.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\optimizer\ConstantFoldingPass.cpp" />
-    <ClCompile Include="src\parser\Parser.cpp" />
-    <ClCompile Include="src\semanticAnalyzer\SemanticAnalyzer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ast\AST.h" />
-    <ClInclude Include="src\codeGenerator\CodeGenerator.h" />
-    <ClInclude Include="src\lexer\Lexer.h" />
-    <ClInclude Include="src\lexer\LexerMap.h" />
-    <ClInclude Include="src\lexer\Token.h" />
-    <ClInclude Include="src\optimizer\ASTPass.h" />
-    <ClInclude Include="src\optimizer\ConstantFoldingPass.h" />
-    <ClInclude Include="src\optimizer\PassManager.h" />
-    <ClInclude Include="src\parser\Parser.h" />
-    <ClInclude Include="src\semanticAnalyzer\SemanticAnalyzer.h" />
+    <ClInclude Include="src\frontend\ast\AST.h" />
+    <ClInclude Include="src\frontend\lexer\Lexer.h" />
+    <ClInclude Include="src\frontend\lexer\LexerMap.h" />
+    <ClInclude Include="src\frontend\lexer\Token.h" />
+    <ClInclude Include="src\frontend\parser\Parser.h" />
+    <ClInclude Include="src\frontend\sema\SemanticAnalyzer.h" />
+    <ClInclude Include="src\ir\builder\ASTVisitor.h" />
+    <ClInclude Include="src\ir\builder\IRBuilder.h" />
+    <ClInclude Include="src\ir\builder\IRGenerator.h" />
+    <ClInclude Include="src\ir\constants\ConstantArray.h" />
+    <ClInclude Include="src\ir\constants\ConstantCString.h" />
+    <ClInclude Include="src\ir\constants\ConstantFloat.h" />
+    <ClInclude Include="src\ir\constants\ConstantInt.h" />
+    <ClInclude Include="src\ir\core\BasicBlock.h" />
+    <ClInclude Include="src\ir\constants\Constant.h" />
+    <ClInclude Include="src\ir\core\Function.h" />
+    <ClInclude Include="src\ir\constants\ConstantZeroInitializer.h" />
+    <ClInclude Include="src\ir\core\GlobalVariable.h" />
+    <ClInclude Include="src\ir\core\Instruction.h" />
+    <ClInclude Include="src\ir\core\LibFunction.h" />
+    <ClInclude Include="src\ir\core\Module.h" />
+    <ClInclude Include="src\ir\core\Opcode.h" />
+    <ClInclude Include="src\ir\core\UndefValue.h" />
+    <ClInclude Include="src\ir\core\Use.h" />
+    <ClInclude Include="src\ir\passes\ConstantFoldingPass.h" />
+    <ClInclude Include="src\ir\passes\DeadCodeEliminationPass.h" />
+    <ClInclude Include="src\ir\passes\DeadStoreEliminationPass.h" />
+    <ClInclude Include="src\ir\passes\IRVerifier.h" />
+    <ClInclude Include="src\ir\passes\SimplifyCFGPass.h" />
+    <ClInclude Include="src\ir\passes\StoreLoadForwardingPass.h" />
+    <ClInclude Include="src\ir\types\ArrayType.h" />
+    <ClInclude Include="src\ir\types\FunctionType.h" />
+    <ClInclude Include="src\ir\types\PointerType.h" />
+    <ClInclude Include="src\ir\types\Type.h" />
+    <ClInclude Include="src\ir\types\VectorType.h" />
+    <ClInclude Include="src\ir\core\User.h" />
+    <ClInclude Include="src\ir\core\Value.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{82cbaec2-f321-475a-81cf-a794ff0e5285}</ProjectGuid>
     <RootNamespace>MiniCXX</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -114,7 +167,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\codeGenerator;$(SolutionDir)src\optimizer;$(SolutionDir)src;$(SolutionDir)src\lexer;$(SolutionDir)src\parser;$(SolutionDir)src\ast;$(SolutionDir)src\semanticAnalyzer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,7 +184,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\codeGenerator;$(SolutionDir)src\optimizer;$(SolutionDir)src;$(SolutionDir)src\lexer;$(SolutionDir)src\parser;$(SolutionDir)src\ast;$(SolutionDir)src\semanticAnalyzer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,7 +201,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\codeGenerator;$(SolutionDir)src\optimizer;$(SolutionDir)src;$(SolutionDir)src\lexer;$(SolutionDir)src\parser;$(SolutionDir)src\ast;$(SolutionDir)src\semanticAnalyzer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,7 +218,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\codeGenerator;$(SolutionDir)src\optimizer;$(SolutionDir)src;$(SolutionDir)src\lexer;$(SolutionDir)src\parser;$(SolutionDir)src\ast;$(SolutionDir)src\semanticAnalyzer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,0 +1,6 @@
+int main() {
+    starttime();
+    putf("v=%d\n", 1);
+    stoptime();
+    return 0;
+}

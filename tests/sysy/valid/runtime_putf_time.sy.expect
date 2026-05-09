@@ -1,0 +1,4 @@
+declare void @putf(ptr, ...)
+call void @_sysy_starttime(i32 2)
+call void @putf(ptr
+call void @_sysy_stoptime(i32 4)

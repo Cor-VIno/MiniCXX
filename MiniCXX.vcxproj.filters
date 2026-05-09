@@ -18,51 +18,210 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\parser\Parser.cpp">
+    <ClCompile Include="src\frontend\lexer\Lexer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\lexer\Lexer.cpp">
+    <ClCompile Include="src\frontend\parser\Parser.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\semanticAnalyzer\SemanticAnalyzer.cpp">
+    <ClCompile Include="src\frontend\sema\SemanticAnalyzer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\codeGenerator\CodeGenerator.cpp">
+    <ClCompile Include="src\frontend\ast\AST.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\optimizer\ConstantFoldingPass.cpp">
+    <ClCompile Include="src\ir\builder\IRBuilder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\builder\IRGenerator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\constants\ConstantArray.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\constants\ConstantCString.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\types\Type.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\User.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\Value.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\constants\ConstantInt.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\types\PointerType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\constants\ConstantFloat.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\types\ArrayType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\types\FunctionType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\constants\ConstantZeroInitializer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\BasicBlock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\Function.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\GlobalVariable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\Instruction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\LibFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\Module.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\core\UndefValue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\passes\IRVerifier.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\passes\ConstantFoldingPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\passes\DeadCodeEliminationPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\passes\DeadStoreEliminationPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\passes\SimplifyCFGPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\passes\StoreLoadForwardingPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ir\types\VectorType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\parser\Parser.h">
+    <ClInclude Include="src\frontend\lexer\Lexer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\lexer\Lexer.h">
+    <ClInclude Include="src\frontend\lexer\LexerMap.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\lexer\LexerMap.h">
+    <ClInclude Include="src\frontend\lexer\Token.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\lexer\Token.h">
+    <ClInclude Include="src\frontend\ast\AST.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\ast\AST.h">
+    <ClInclude Include="src\frontend\parser\Parser.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\semanticAnalyzer\SemanticAnalyzer.h">
+    <ClInclude Include="src\frontend\sema\SemanticAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\codeGenerator\CodeGenerator.h">
+    <ClInclude Include="src\ir\builder\ASTVisitor.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\optimizer\ASTPass.h">
+    <ClInclude Include="src\ir\builder\IRBuilder.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\optimizer\PassManager.h">
+    <ClInclude Include="src\ir\builder\IRGenerator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\optimizer\ConstantFoldingPass.h">
+    <ClInclude Include="src\ir\core\Value.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\types\Type.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\User.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\constants\Constant.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\Instruction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\BasicBlock.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\Function.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\types\PointerType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\constants\ConstantInt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\constants\ConstantFloat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\types\ArrayType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\types\FunctionType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\constants\ConstantArray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\constants\ConstantCString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\constants\ConstantZeroInitializer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\GlobalVariable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\LibFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\Module.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\Opcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\UndefValue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\core\Use.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\types\VectorType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\passes\IRVerifier.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\passes\ConstantFoldingPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\passes\DeadCodeEliminationPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\passes\DeadStoreEliminationPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\passes\SimplifyCFGPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ir\passes\StoreLoadForwardingPass.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

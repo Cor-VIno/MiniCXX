@@ -1,0 +1,4 @@
+int main() {
+    putf(1);
+    return 0;
+}

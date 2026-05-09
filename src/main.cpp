@@ -1,162 +1,141 @@
-#include<iostream>
-#include<vector>
-#include"Lexer.h"
-#include"LexerMap.h"
-#include"Parser.h"
-#include"SemanticAnalyzer.h"
-#include"PassManager.h"
-#include"CodeGenerator.h"
 #include <fstream>
-#include <cstdlib>
+#include <iostream>
+#include <sstream>
 #include <string>
 
-void printToken(const Token& tok)
+#include "frontend/ast/AST.h"
+#include "frontend/lexer/Lexer.h"
+#include "frontend/parser/Parser.h"
+#include "frontend/sema/SemanticAnalyzer.h"
+#include "ir/builder/IRGenerator.h"
+#include "ir/passes/ConstantFoldingPass.h"
+#include "ir/passes/DeadCodeEliminationPass.h"
+#include "ir/passes/DeadStoreEliminationPass.h"
+#include "ir/passes/IRVerifier.h"
+#include "ir/passes/SimplifyCFGPass.h"
+#include "ir/passes/StoreLoadForwardingPass.h"
+
+static void printUsage(const char* program)
 {
-    std::string typeName = "UnknownType";
-    auto it = TokenNameMap.find(tok.type);
-    if (it != TokenNameMap.end())
-    {
-        typeName = it->second;
-    }
-    std::cout << "[" << typeName << "] \t'" << tok.value << "'\n";
+    std::cerr << "Usage: " << program << " [--dump-ast] [--no-opt] [source.sy|-]\n";
 }
 
-int main()
+int main(int argc, char** argv)
 {
-    std::cout << "Minicxx currently does not support floating-point numeric literals, boolean values, comments, #, and other advanced operations.\n\n\n";
-	std::cout << "But!!!   Supported!!!!  printf  !!!!!\n\n\n";
-    std::cout << "Please enter your code. To exit, type 'ccc' on a new line.\n\n";
-    while (true)
+    bool dumpAst = false;
+    bool optimize = true;
+    std::string inputPath;
+
+    for (int i = 1; i < argc; ++i)
     {
-        std::string optLevel = "0";
-        int optLevelInt = 0;
-        std::cout << "Select optimization level (0: no optimization, 1: basic optimization, 2: advanced optimization): ";
-        std::getline(std::cin, optLevel);
-        if (optLevel == "ccc")
+        std::string arg = argv[i];
+        if (arg == "--dump-ast")
         {
-            std::cout << "Exiting...\n";
-            std::cin.get();
+            dumpAst = true;
+        }
+        else if (arg == "--no-opt")
+        {
+            optimize = false;
+        }
+        else if (arg == "--help" || arg == "-h")
+        {
+            printUsage(argv[0]);
             return 0;
         }
-        else if (optLevel == "0")
+        else if (!inputPath.empty())
         {
-            optLevelInt = 0;
-        }
-        else if (optLevel == "1")
-        {
-            optLevelInt = 1;
-        }
-        else if (optLevel == "2")
-        {
-            optLevelInt = 2;
+            printUsage(argv[0]);
+            return 1;
         }
         else
         {
-            std::cout << "Invalid optimization level. Defaulting to 0 (no optimization).\n";
-            optLevelInt = 0;
+            inputPath = arg;
         }
-
-        std::string outputDir;
-        std::cout << "Enter output directory path (leave empty for current directory): ";
-        std::getline(std::cin, outputDir);
-        if (outputDir == "ccc")
-        {
-            std::cout << "Exiting...\n";
-            std::cin.get();
-            return 0;
-        }
-
-        // 智能处理路径拼接：如果用户输入了路径，检查末尾有没有斜杠，没有就补上
-        std::string asmFilePath = "output.s";
-        std::string exeFilePath = "program.exe";
-        if (!outputDir.empty())
-        {
-            char lastChar = outputDir.back();
-            if (lastChar != '\\' && lastChar != '/')
-            {
-                outputDir += "\\"; // 默认按 Windows 的反斜杠补充
-            }
-            asmFilePath = outputDir + "output.s";
-            exeFilePath = outputDir + "program.exe";
-        }
-        // ==========================================================
-
-        std::cout << "Enter code (end with an empty line):\n";
-        std::string code;
-        while (true)
-        {
-            std::string line;
-            std::getline(std::cin, line);
-            if (line.empty()) break;
-            if (line == "ccc")
-            {
-                std::cout << "Exiting...\n";
-                std::cin.get();
-                return 0;
-            }
-            code += line + "\n";
-        }
-        std::cout << "===========================\n";
-        Lexer lexer(code);
-        auto tokens = lexer.tokenize();
-        /*for (const auto& tok : tokens)
-        {
-        printToken(tok);
-        }*/
-        // 词法给语法
-        Parser parser(tokens);
-        auto ast = parser.parseProgram();
-        //if (ast) ast->print();
-
-        // 语法给语义
-        SemanticAnalyzer analyzer;
-     
-
-        if (analyzer.analyze(ast.get()))
-        {
-            continue;
-        }
-
-        // 语义给优化
-        PassManager passManager(optLevelInt); // 传入优化级别，0表示不优化，1表示基础优化，2表示进阶优化
-        auto optimizedAST = passManager.runAll(std::move(ast));
-
-        // 语义给代码生成
-        CodeGenerator codeGen;
-        codeGen.generate(optimizedAST.get());
-        std::string assemblyCode = codeGen.getAssembly();
-        std::cout << "Generated Assembly:\n" << assemblyCode;
-
-        //continue;
-
-        // 将生成的汇编代码写入指定目录下的 output.s 文件
-        std::ofstream outFile(asmFilePath);
-        if (outFile.is_open())
-        {
-            outFile << assemblyCode;
-            outFile.close();
-            std::cout << "\nAssembly code has been written to " << asmFilePath << "\n";
-        }
-        else
-        {
-            std::cerr << "Failed to open " << asmFilePath << " for writing.\n";
-            continue; // 文件创建失败就重来
-        }
-
-        // 使用组装好的绝对路径调用 GCC，并在路径两侧加上双引号以防路径中有空格
-        std::string compileCmd = "gcc \"" + asmFilePath + "\" -o \"" + exeFilePath + "\" -m64";
-        std::cout << "Running command: " << compileCmd << "\n";
-
-        int compileResult = std::system(compileCmd.c_str());
-        if (compileResult == 0)
-        {
-            std::cout << "Compilation successful! Executable generated: " << exeFilePath << "\n";
-        }
-        else
-        {
-            std::cerr << "Compilation failed. \n";
-        }
-        std::cout << "\n";
     }
+
+    std::string sourceCode = R"(
+int main() {
+    int matrix[2][3] = {{1, 2}, {3, 4}};
+    int i = 0;
+    int j = 1;
+    matrix[i][j] = 5;
+    int val = matrix[0][j + 1];
+    return val;
+}
+    )";
+
+    if (!inputPath.empty())
+    {
+        std::ostringstream buffer;
+        if (inputPath == "-")
+        {
+            buffer << std::cin.rdbuf();
+        }
+        else
+        {
+            std::ifstream input(inputPath);
+            if (!input)
+            {
+                std::cerr << "Cannot open source file: " << inputPath << "\n";
+                return 1;
+            }
+            buffer << input.rdbuf();
+        }
+        sourceCode = buffer.str();
+    }
+
+    Lexer lexer(sourceCode);
+    std::vector<Token> tokens = lexer.tokenize();
+
+    Parser parser(tokens);
+    std::unique_ptr<ProgramAST> program = parser.parseProgram();
+
+    if (!program)
+    {
+        return 1;
+    }
+
+    if (dumpAst)
+    {
+        program->print(0);
+    }
+
+    SemanticAnalyzer sema;
+    if (!sema.analyze(program.get()))
+    {
+        return 1;
+    }
+
+    IRGenerator irgen;
+    program->accept(irgen);
+
+    if (optimize)
+    {
+        bool changed = true;
+        for (int iteration = 0; changed && iteration < 4; ++iteration)
+        {
+            changed = false;
+            ConstantFoldingPass constantFolding;
+            changed |= constantFolding.run(irgen.getModule());
+            StoreLoadForwardingPass storeLoadForwarding;
+            changed |= storeLoadForwarding.run(irgen.getModule());
+            changed |= constantFolding.run(irgen.getModule());
+            SimplifyCFGPass simplifyCFG;
+            changed |= simplifyCFG.run(irgen.getModule());
+            DeadStoreEliminationPass dse;
+            changed |= dse.run(irgen.getModule());
+            DeadCodeEliminationPass dce;
+            changed |= dce.run(irgen.getModule());
+        }
+    }
+
+    IRVerifier verifier;
+    if (!verifier.verify(irgen.getModule()))
+    {
+        verifier.printErrors();
+        return 1;
+    }
+
+    std::cout << irgen.printModule();
     return 0;
 }

@@ -1,0 +1,5 @@
+int main() {
+    const int N = 2;
+    int a[N] = {1, 2};
+    return a[1];
+}
